@@ -1,0 +1,10 @@
+const _CHARTCOLORS = {
+    PRIMARY: '#666',
+    PRIMARYDARK: '#333',
+    PRIMARYLIGHT: '#888',
+    SECONDARY: '#cec',
+    SECONDARYDARK: '#aca',
+    SECONDARYLIGHT: '#dfd',
+}
+
+exports.CHARTCOLORS = _CHARTCOLORS
