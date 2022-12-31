@@ -8,7 +8,7 @@ function SRCButton({ srcLink }) {
   return (
     <Tooltip title={srcLink || "undefined"}>
       <IconButton
-        color="secondary"
+        color="info"
         aria-label="add an alarm"
         onClick={() => {
           if (srcLink) {
@@ -16,7 +16,7 @@ function SRCButton({ srcLink }) {
           }
         }}
       >
-        <Info sx={{ color: "#999" }}></Info>
+        <Info></Info>
       </IconButton>
     </Tooltip>
   );

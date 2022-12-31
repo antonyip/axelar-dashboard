@@ -1,96 +1,152 @@
-import './App.css';
 import {
   BrowserRouter,
   Routes,
   Route,
   //Link
 } from "react-router-dom";
-//import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import TransactionsPage from './Pages/TransactionsPage'
-import WalletsPage from './Pages/WalletsPage'
-import DevelopmentPage from './Pages/DevelopmentPage'
-import SupplyPage from './Pages/SupplyPage'
-import AboutPage from './Pages/AboutPage'
-import SummaryPage from './Pages/SummaryPage'
-import StakingPage from './Pages/StakingPage'
-import Layout from './Layout/Layout';
+import { ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material";
+import TransactionsPage from "./Pages/TransactionsPage";
+import WalletsPage from "./Pages/WalletsPage";
+import DevelopmentPage from "./Pages/DevelopmentPage";
+import SupplyPage from "./Pages/SupplyPage";
+import AboutPage from "./Pages/AboutPage";
+import SummaryPage from "./Pages/SummaryPage";
+import StakingPage from "./Pages/StakingPage";
+import Layout from "./Layout/Layout";
 
 function App() {
-
   const themeOptions = {
     palette: {
-      type: 'light',
+      mode: "light",
       primary: {
-        main: '#333',
+        main: "#2196f3", // primary theme color + AppBar Color
+        light: "#6ec6ff",
+        dark: "#0069c0",
+        contrastText: "#000",
       },
       secondary: {
-        main: '#666',
+        main: "#fff176", // secondary theme color
+        light: "#ffffa8",
+        dark: "#cabf45",
+        contrastText: "#000",
+      },
+      info: {
+        main: "#333",
       },
       background: {
-        default: '#333',
-        paper: '#333',
+        default: "#ccc", // color of all your surfaces
+        paper: "#6ec6ff", // color of all your paper surfaces
       },
       text: {
-        primary: '#111111',
+        primary: "#000", // text on primary color
+        secondary: "#000", // text on secondary color
+        disabled: "#606",
+      },
+      topnav: {
+        main: "#0069c0", // AppBar Color
       },
     },
     shape: {
-      borderRadius: 20,
+      borderRadius: 0,
     },
-    props: {
+    components: {
       MuiButton: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiButtonGroup: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiCheckbox: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiFab: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiFormControl: {
-        margin: 'dense',
-        size: 'small',
+        defaultProps: {
+          margin: "dense",
+          size: "small",
+        },
       },
       MuiFormHelperText: {
-        margin: 'dense',
+        defaultProps: {
+          margin: "dense",
+        },
       },
       MuiIconButton: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiInputBase: {
-        margin: 'dense',
+        defaultProps: {
+          margin: "dense",
+        },
       },
       MuiInputLabel: {
-        margin: 'dense',
+        defaultProps: {
+          margin: "dense",
+        },
       },
       MuiRadio: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiSwitch: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiTextField: {
-        margin: 'dense',
-        size: 'small',
+        defaultProps: {
+          margin: "dense",
+          size: "small",
+        },
       },
       MuiList: {
-        dense: true,
+        defaultProps: {
+          dense: true,
+        },
       },
       MuiMenuItem: {
-        dense: true,
+        defaultProps: {
+          dense: true,
+        },
       },
       MuiTable: {
-        size: 'small',
+        defaultProps: {
+          size: "small",
+        },
       },
       MuiTooltip: {
-        arrow: true,
+        defaultProps: {
+          arrow: true,
+        },
       },
+      MuiPaper: {
+        defaultProps: {
+        },
+      }
     },
     overrides: {
+      MuiPaper: {
+        root: {
+          MuiDrawer: {
+            root: {
+            },
+          },
+        },
+      },
       MuiSwitch: {
         root: {
           width: 42,
@@ -100,12 +156,12 @@ function App() {
         },
         switchBase: {
           padding: 1,
-          '&$checked, &$colorPrimary$checked, &$colorSecondary$checked': {
-            transform: 'translateX(16px)',
-            color: '#111',
-            '& + $track': {
+          "&$checked, &$colorPrimary$checked, &$colorSecondary$checked": {
+            transform: "translateX(16px)",
+            color: "#111",
+            "& + $track": {
               opacity: 1,
-              border: 'none',
+              border: "none",
             },
           },
         },
@@ -115,33 +171,81 @@ function App() {
         },
         track: {
           borderRadius: 13,
-          border: '1px solid #bdbdbd',
-          backgroundColor: '#111',
+          border: "1px solid #bdbdbd",
+          backgroundColor: "#111",
           opacity: 1,
-          transition: 'background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          transition:
+            "background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
         },
       },
     },
   };
 
-const themeObject = createTheme(themeOptions);
-  
+  const themeObject = createTheme(themeOptions);
+
   return (
-    <div className="MainPage">
-      <ThemeProvider theme={themeObject}>
-        <BrowserRouter>
-            <Routes>
-              <Route path="/transactions" element={<Layout><TransactionsPage className="SubPage"/></Layout>} />
-              <Route path="/wallets" element={<Layout><WalletsPage className="SubPage"/></Layout>} />
-              <Route path="/development" element={<Layout><DevelopmentPage className="SubPage"/></Layout>} />
-              <Route path="/supply" element={<Layout><SupplyPage className="SubPage"/></Layout>} />
-              <Route path="/staking" element={<Layout><StakingPage className="SubPage"/></Layout>} />
-              <Route path="/about" element={<Layout><AboutPage className="SubPage"/></Layout>} />
-              <Route path="/" element={<Layout><SummaryPage className="SubPage"/></Layout>} />
-            </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={themeObject}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/transactions"
+            element={
+              <Layout>
+                <TransactionsPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/wallets"
+            element={
+              <Layout>
+                <WalletsPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/development"
+            element={
+              <Layout>
+                <DevelopmentPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/supply"
+            element={
+              <Layout>
+                <SupplyPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/staking"
+            element={
+              <Layout>
+                <StakingPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <AboutPage className="SubPage" />
+              </Layout>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <SummaryPage className="SubPage" />
+              </Layout>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

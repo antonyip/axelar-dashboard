@@ -8,7 +8,7 @@ export default function AboutPage() {
     <Typography color={"textPrimary"} variant='body1'></Typography>
     <br />
     <Typography color={"textPrimary"} variant='body1'>You can find the sources of this project at... </Typography>
-    <Typography color={"textPrimary"} variant='body1'><a href="https://github.com/antonyip/near-dashboard" target="_blank" rel="noreferrer">Link to Github</a></Typography>
+    <Typography color={"textPrimary"} variant='body1'><a href="https://github.com/antonyip/axelar-dashboard" target="_blank" rel="noreferrer">Link to Github</a></Typography>
     <br />
     <Typography color={"textPrimary"} variant='body1'>Visit the organizations that motivated me to build this site! </Typography>
     <Typography color={"textPrimary"} variant='body1'><a href="https://flipsidecrypto.xyz" target="_blank" rel="noreferrer">FlipsideCrypto</a></Typography>

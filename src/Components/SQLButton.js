@@ -22,7 +22,7 @@ function SQLButton({ sqlQuery }) {
   return (
     <>
       <Button variant="contained" size="small" onClick={handleClickOpen}>
-        <Typography sx={{ fontSize: 10 }} color="#fff">
+        <Typography sx={{ fontSize: 10 }} color={"textPrimary"}>
           SQL
         </Typography>
       </Button>
@@ -32,11 +32,11 @@ function SQLButton({ sqlQuery }) {
         scroll={"paper"}
         maxWidth={"md"}
       >
-        <DialogTitle id="sql-title" color={"#ccc"}>
+        <DialogTitle id="sql-title" color={"textPrimary"}>
           {"SQL Query"}
         </DialogTitle>
         <DialogContent>
-            <Typography color="#ccc"  style={{whiteSpace: 'break-spaces', }}>
+            <Typography color={"textPrimary"}  style={{whiteSpace: 'break-spaces', }}>
                 {sqlQuery}
             </Typography>
         </DialogContent>

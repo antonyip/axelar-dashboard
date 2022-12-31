@@ -25,9 +25,6 @@ export default function SummaryPage() {
   const [TerraLunaSupplyData, setTerraLunaSupplyData] = useState(1051017414);
   const [TerraLunaSupplyCirculatingData, setTerraLunaSupplyCirculatingData] =
     useState(187324501);
-  const [TerraLunaStakingRateData, setTerraLunaStakingRateData] =
-    useState("10.634%");
-  const [TerraLunaStakedData, setTerraLunaStakedData] = useState(522556056);
 
   const [_internalTimer, _setInternalTimer] = useState(1);
 
@@ -36,12 +33,6 @@ export default function SummaryPage() {
       _setInternalTimer(Math.random());
     }, 1000); // updates every 1 second
   }, []);
-
-  // fake use
-  if (TerraLunaStakingRateData && TerraLunaStakedData)
-  {
-    console.log("asd")
-  }
 
   useEffect(() => {
     
@@ -52,14 +43,13 @@ export default function SummaryPage() {
     });
     TerraLCDSupply().then((res) => {
       setTerraLunaSupplyData(PhoenixLCDExtractSupply(res));
-      setTerraLunaStakingRateData("10.643%");
     });
     TerraLCDSupplyCirculating().then((res) =>
       setTerraLunaSupplyCirculatingData(res)
     );
 
     TerraLCDStaked().then((res) => {
-      setTerraLunaStakedData(res.pool.bonded_tokens / 1000000);
+      
     });
   }, [_internalTimer]);
 
@@ -108,36 +98,6 @@ export default function SummaryPage() {
             chartSource={"https://explorer.near.org/api/circulating-supply"}
           ></SingleDigitDisplay>
         </Grid>
-
-        {/* <Grid item xs={12} md={4} sx={{ p: 1 }}>
-          <SingleDigitDisplay
-            chartName="Luna Staked"
-            chartValue={NumberWithCommas(Math.round(TerraLunaStakedData))}
-            chartSource={
-              "https://phoenix-lcd.terra.dev/cosmos/staking/v1beta1/pool"
-            }
-          ></SingleDigitDisplay>
-        </Grid>
-        <Grid item xs={12} md={4} sx={{ p: 1 }}>
-          <SingleDigitDisplay
-            chartName="Luna Staking APY"
-            chartValue={TerraLunaStakingRateData}
-            chartSource={
-              "https://phoenix-api.terra.dev/chart/staking-return/annualized"
-            }
-          ></SingleDigitDisplay>
-        </Grid>
-        <Grid item xs={12} md={4} sx={{ p: 1 }}>
-          <SingleDigitDisplay
-            chartName="Luna Staked Ratio"
-            chartValue={
-              Math.round((TerraLunaStakedData / TerraLunaSupplyData) * 100000) /
-                1000 +
-              "%"
-            }
-            disableSource={true}
-          ></SingleDigitDisplay>
-        </Grid> */}
       </Grid>
     </>
   );

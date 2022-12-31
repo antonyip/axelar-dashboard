@@ -1,5 +1,4 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import { CHARTCOLORS } from "../Constants/Colors";
 import { Grid } from "@mui/material";
 import SRCButton from "./SRCButton";
 
@@ -17,7 +16,6 @@ function SingleDigitDisplay({
           <Grid item xs={10}>
             <Typography
               sx={{ fontSize: 24 }}
-              color={CHARTCOLORS.PRIMARYLIGHT}
               component="div"
             >
               {chartName}
@@ -34,7 +32,7 @@ function SingleDigitDisplay({
         <Grid item xs={12}>
           <Typography
             sx={{ fontSize: 24 }}
-            color={CHARTCOLORS.SECONDARY}
+            color={"textPrimaryLight"}
             component="div"
           >
             {chartPreValueText}

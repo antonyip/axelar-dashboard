@@ -10,8 +10,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import EmptyChart from "./EmptyChart";
-
-import { CHARTCOLORS } from "../Constants/Colors";
 import SQLButton from "./SQLButton";
 import JSONButton from "./JSONButton";
 import {
@@ -49,8 +47,7 @@ const TimeBarChart = ({
             </Grid>
             <Grid item xs={9}>
               <Typography
-                color={CHARTCOLORS.PRIMARYLIGHT}
-                sx={{ fontSize: 22 }}
+              variant="h5"
               >
                 {chartTitle}
               </Typography>
@@ -126,7 +123,7 @@ const TimeBarChart = ({
       <CardContent>
         <Grid container>
           <Grid item xs={10}>
-            <Typography color={CHARTCOLORS.PRIMARYLIGHT} sx={{ fontSize: 22 }}>
+            <Typography variant="h5">
               {chartTitle}
             </Typography>
           </Grid>

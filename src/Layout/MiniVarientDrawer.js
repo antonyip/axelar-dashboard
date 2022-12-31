@@ -1,122 +1,118 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import InfoIcon from '@mui/icons-material/Info';
-import ReceiptRoundedIcon from '@mui/icons-material/ReceiptRounded';
-import WalletRoundedIcon from '@mui/icons-material/WalletRounded';
-//import CodeIcon from '@mui/icons-material/Code';
-//import BalanceIcon from '@mui/icons-material/Balance';
-import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-import {
-    Link
-  } from "react-router-dom";
+import * as React from "react";
+import { styled, useTheme } from "@mui/material/styles";
+//import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import MuiDrawer from "@mui/material/Drawer";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import InfoIcon from "@mui/icons-material/Info";
+import ReceiptRoundedIcon from "@mui/icons-material/ReceiptRounded";
+import WalletRoundedIcon from "@mui/icons-material/WalletRounded";
+import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
+import { Link } from "react-router-dom";
 
 /*
-Modify the top row for paths
+-------------- Modifications Start ------------------
 */
 
+// Title on top of the page
+const HEADER_TITLE = "Axelar Dashboard";
+// MainPage Color
+//const MAINCONTENTBACKGROUNDCOLOR = "#ccc";
+
 const HYPERLINKS = [
-    ["Home","/",<HomeRoundedIcon sx={{color:"#fff"}} />],
-    ["Transactions","/transactions",<ReceiptRoundedIcon sx={{color:"#fff"}} />],
-    ["Wallets","/wallets",<WalletRoundedIcon sx={{color:"#fff"}} />],
-    //["Development","/development",<CodeIcon sx={{color:"#fff"}} />],
-    //["Supply","/supply",<BalanceIcon sx={{color:"#fff"}} />],
-    ["Staking","/staking",<AccountBalanceRoundedIcon sx={{color:"#fff"}} />],
-    ["About","/about",<InfoIcon sx={{color:"#fff"}} />],
-]
+  ["Home", "/", <HomeRoundedIcon />],
+  ["Transactions", "/transactions", <ReceiptRoundedIcon />],
+  ["Wallets", "/wallets", <WalletRoundedIcon />],
+  //["Development","/development",<HomeRoundedIcon />],
+  //["Supply","/supply",<HomeRoundedIcon />],
+  ["Staking", "/staking", <AccountBalanceRoundedIcon />],
+  ["About", "/about", <InfoIcon />],
+];
 
-const headerTitle = 'Near Dashboard'
-
-//create our style
-// background color is child page color
-const styles = {    
-  childPage: {
-  backgroundColor: "#ccc",
-  color: "#fff"
-}};
+/*
+-------------- Modifications End ------------------
+*/
 
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
 });
 
 const closedMixin = (theme) => ({
-  transition: theme.transitions.create('width', {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  overflowX: 'hidden',
+  overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
   }),
-);
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 export default function MiniVarientDrawer({ children }) {
   const theme = useTheme();
@@ -131,9 +127,9 @@ export default function MiniVarientDrawer({ children }) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" color="topnav" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -142,77 +138,68 @@ export default function MiniVarientDrawer({ children }) {
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: 'none' }),
+              ...(open && { display: "none" }),
             }}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {headerTitle}
+            {HEADER_TITLE}
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {HYPERLINKS.map((element) => (
             <Link key={element[0]} to={element[1]}>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+              <ListItem disablePadding sx={{ display: "block" }}>
                 <ListItemButton
-                    sx={{
+                  sx={{
                     minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
+                    justifyContent: open ? "initial" : "center",
                     px: 2.5,
-                    }}
+                  }}
                 >
-                    <ListItemIcon
+                  <ListItemIcon
                     sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
                     }}
-                    >
+                  >
                     {element[2]}
-                    </ListItemIcon>
-                    <ListItemText primary={element[0]} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={element[0]}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
                 </ListItemButton>
-                </ListItem>
+              </ListItem>
             </Link>
           ))}
         </List>
-        {/* <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List> */}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, height:"120vh" }} style={styles.childPage}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, height: "100vh" }}>
         <DrawerHeader />
+        {/* <Paper
+          sx={{
+            p: 3,
+            background: MAINCONTENTBACKGROUNDCOLOR,
+            minHeight: "100vh",
+          }}
+        >
+          
+        </Paper> */}
         {children}
       </Box>
     </Box>

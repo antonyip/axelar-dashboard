@@ -3,9 +3,7 @@ import MiniVarientDrawer from './MiniVarientDrawer';
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <MiniVarientDrawer>{children}</MiniVarientDrawer>
-    </>
+    <MiniVarientDrawer>{children}</MiniVarientDrawer>
   );
 };
 

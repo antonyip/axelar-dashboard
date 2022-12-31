@@ -58,8 +58,9 @@ const MultiAxisBarLineChart = ({
             </Grid>
             <Grid item xs={9}>
               <Typography
-                color={CHARTCOLORS.PRIMARYLIGHT}
-                sx={{ fontSize: 22 }}
+                //color={CHARTCOLORS.PRIMARYLIGHT}
+                //sx={{ fontSize: 22 }}
+                variant="h5"
               >
                 {chartTitle}
               </Typography>
@@ -152,7 +153,10 @@ const MultiAxisBarLineChart = ({
       <CardContent>
         <Grid container>
           <Grid item xs={10}>
-            <Typography color={CHARTCOLORS.PRIMARYLIGHT} sx={{ fontSize: 22 }}>
+            <Typography
+                //color={CHARTCOLORS.PRIMARYLIGHT}
+                //sx={{ fontSize: 22 }}
+                variant="h5">
               {chartTitle}
             </Typography>
           </Grid>
